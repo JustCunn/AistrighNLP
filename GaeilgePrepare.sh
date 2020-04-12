@@ -8,7 +8,8 @@ git clone https://github.com/rsennrich/subword-nmt.git
 
 SCRIPTS=mosesdecoder/scripts
 TOKENISER=$SCRIPTS/tokenizer/tokenizer.perl
-LC=$SCRIPTS/training/clean_corpus-n.perl
+LC=$SCRIPTS/tokenizer/lowercase.perl
+CLEAN=$SCRIPTS/training/clean-corpus-n.perl
 BPEROOT=subword-nmt/subword_nmt
 BPE_TOKENS=10000
 
