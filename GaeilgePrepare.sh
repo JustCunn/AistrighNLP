@@ -32,6 +32,7 @@ for l in $src $tgt; do
     f=EUbookshop.$lang.$l
     tok=EUbookshop.$lang.tok.$l
     
+    cat $orig/$f
     perl $TOKENIZER -threads 8 -l $l > $tmp/$tok
     echo""
 done
