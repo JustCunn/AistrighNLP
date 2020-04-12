@@ -44,7 +44,7 @@ done
 
 echo "pre-processing valid/test data..."
 for l in $src $tgt; do
-    for o in `ls $orig/QED.en-ga.$l`; do
+    for o in $orig/QED.en-ga.$l; do
     f=$tmp/QED.en-ga.$l
     echo $o $f
     perl $TOKENISER -threads 8 -l $l | \
