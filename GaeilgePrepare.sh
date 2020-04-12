@@ -32,7 +32,7 @@ for l in $src $tgt; do
     f=EUbookshop.$lang.$l
     tok=EUbookshop.$lang.tok.$l
     
-    cat $orig/$f | \
+    cat $orig/en-ga.txt/$f | \
     perl $TOKENIZER -threads 8 -l $l > $tmp/$tok
     echo""
 done
@@ -45,7 +45,7 @@ done
 
 echo "pre-processing valid/test data..."
 for l in $src $tgt; do
-    for o in $orig/QED.en-ga.$l; do
+    for o in $orig/en-ga.txt/QED.en-ga.$l; do
     f=$tmp/QED.en-ga.$l
     echo $o $f
     perl $TOKENISER -threads 8 -l $l | \
