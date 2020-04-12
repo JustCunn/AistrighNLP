@@ -27,6 +27,8 @@ orig=orig
 
 mkdir -p $orig $tmp $prep
 
+cd ..
+
 echo "pre-processing train data..."
 for l in $src $tgt; do
     f=EUbookshop.$lang.$l
