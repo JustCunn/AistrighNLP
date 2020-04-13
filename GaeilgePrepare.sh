@@ -1,4 +1,14 @@
 #This shell script is adapted from https://github.com/pytorch/fairseq/blob/master/examples/translation/prepare-iwslt14.sh
+#
+#To run this script you need to clone this git (git clone https://github.com/JustCunn/IrishNMT.git)
+#You'll also need these files - http://opus.nlpl.eu/download.php?f=EUbookshop/v2/moses/en-ga.txt.zip
+#& http://opus.nlpl.eu/download.php?f=QED/v2.0a/moses/en-ga.txt.zip
+#Extract these files and take the files out of en-ga.txt(1) and place them into en-ga.txt
+#Then cd IrishNMT
+#Then bash GaeilgePrepare.sh
+#When it has finished (it will throw an error), place the en-ga.txt folder into the orig folder (its in the IrishNMT folder)
+#Run the bash command again and everything should work perfectly
+#You can then use these files to create an English to Irish translator, and the same backwards
 
 echo 'Cloning Moses'
 git clone https://github.com/moses-smt/mosesdecoder.git
