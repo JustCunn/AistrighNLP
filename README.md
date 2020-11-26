@@ -1,3 +1,5 @@
-# IrishNMT <Placeholder>
+# AistrighNLP
 
-This is the GitHub site for our BT Young Scientist Project 2021 - <Placeholder Name>. All codes and instructions on how to use it and work with it can be found here.
+![Aistrigh](https://github.com/JustCunn/AistrighNLP/blob/master/images/github_aistrigh.png)
+
+AistrighNLP is a collection of tools and models used for Aistrigh, the BT Young Scientist 2021 project. Our aim is to bring Irish into the modern era with NLP tools to give it parity with English.
