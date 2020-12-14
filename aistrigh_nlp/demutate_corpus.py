@@ -32,7 +32,6 @@ def create_parser(subparsers=None):
     )
 
 
-label = ''
 corp_list = []
 label_list = []
 
@@ -44,11 +43,11 @@ def demutate_corpus(file, output_file=None):
     """
 
     f = file
-    print(f)
-
+    label = ''
     for item in tqdm(f):
         sentence = str(item)  # Isolate the sentence so it's not part of an iterator
         tmp_list = []
+        tmp_label_list =[]
         for token in item.split():
             try:
                 if token[:3] == 'bhf':  # If begins with 'bhf', remove 'bhf'
@@ -99,7 +98,6 @@ def demutate_corpus(file, output_file=None):
 
             if len(token) < 1:  # If word ends up being removed, skip it
                 continue
-
             label_list.append(label)
             tmp_list.append(token)
 
