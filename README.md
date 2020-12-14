@@ -41,3 +41,7 @@ To predict mutations on each word, use `predict-mutations`. As of right now, it'
 aistrigh-nlp predict-mutations -i input.txt -o output.txt -w 15 -v my_vocab.pth -l my_labels.pth -m my_model.pt
 ```
 
+NOTE
+--------------------
+Aistrigh-NLP uses PyTorch `Traces` to save the full computational graphs as checkpoints. This way, the model architecture need not be declared into hard-coded scripts. See this [StackOverflow Thread](https://stackoverflow.com/questions/59287728/saving-pytorch-model-with-no-access-to-model-class-code) for instructions to save a traced checkpoint.
+
