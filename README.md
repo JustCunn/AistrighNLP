@@ -30,16 +30,27 @@ aistrigh-nlp demutate-corpus -i input.txt -o output.txt
 
 To remove mutations with a 'window' on either side to train a neural network, use `demutate-window`, with `-w` set to your desired window length on each side
 ```
-aistrigh-nlp demutate-window -i input.txt -o output.txt -w 15
+aistrigh-nlp demutate-window -i input.txt -o output.csv -w 15
 ```
 
 
 Predicting the mutations
 -------------------------
-To predict mutations on each word, use `predict-mutations`. As of right now, it's only compatible with PyTorch+Torchtext models but we are working on expanding to TensorFlow and Keras. You'll need your vocab, labels and model checkpoint. We provide a default model to be used.
+To predict mutations on each word, use `predict-mutations`. As of right now, it's only compatible with PyTorch+Torchtext/PyTorch models but we are working on expanding to TensorFlow and Keras. You'll need your vocab, labels and model checkpoint. We provide a default model to be used.
 ```
 aistrigh-nlp predict-mutations -i input.txt -o output.txt -w 15 -v my_vocab.pth -l my_labels.pth -m my_model.pt
 ```
+
+
+Applying the predicted mutations
+-----------------------------------
+To apply the mutations predicted by `predict-mutations`, use `apply-mutations`. 
+```
+aistrigh-nlp apply-mutations -i input.txt -o output.txt -skip
+```
+
+`-skip` here means to skip mutating any tokens containing symbols. It's unlikely these tokens need remutating, and will likely hurt performance without this set.
+
 
 NOTE
 --------------------
