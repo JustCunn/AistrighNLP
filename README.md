@@ -1,10 +1,10 @@
 # AistrighNLP
 <p align="center">
-  <img src="https://github.com/JustCunn/AistrighNLP/blob/master/images/github_aistrigh.png" width="150">
+  <img src="https://github.com/JustCunn/AistrighNLP/blob/master/images/github_aistrigh.png" width="375">
   <br />
   <br />
   <a href="https://github.com/JustCunn/AistrighNLP/blob/master/LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/JustCunn/AistrighNLP?style=for-the-badge" /></a>
-  <a href="https://github.com/JustCunn/AistrighNLP/releases"><img alt="Release" src="https://img.shields.io/github/release/JustCunn/AistrighNLP" /></a>
+  <a href="https://github.com/JustCunn/AistrighNLP/releases"><img alt="Release" src="https://img.shields.io/github/release/JustCunn/AistrighNLP?style=for-the-badge" /></a>
 </p>
 
 
