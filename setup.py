@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setuptools.setup(
     name='aistrigh-nlp',
-    version='0.1.0',
+    version='0.2.0',
     long_description=long_description,
     long_description_content_type="text/markdown",
     license='MIT',
@@ -13,6 +13,11 @@ setuptools.setup(
     author_email='justincunningham@patriciansecondary.com',
     url="https://github.com/JustCunn/AistrighNLP",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'pandas',
+        'torch',
+        'torchtext'
+    ],
     entry_points={
         'console_scripts': ['aistrigh-nlp=aistrigh_nlp.aistrigh:main']
     },
