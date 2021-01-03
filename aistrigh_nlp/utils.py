@@ -9,6 +9,7 @@ import sys
 n_check = re.compile(r"^n[AEIOUÁÉÍÓÚ]")
 h_check = re.compile(r"^h[AEIOUÁÉÍÓÚ]")
 
+
 def lowercase_parser(subparsers=None):
 
     if subparsers:
@@ -16,11 +17,11 @@ def lowercase_parser(subparsers=None):
                                        description="Applies mutations supplied by predict-mutations")
     else:
         parser = argparse.ArgumentParser('lowercase',
-                                       description="Applies mutations supplied by predict-mutations")
+                                         description="Applies mutations supplied by predict-mutations")
 
     parser.add_argument(
         '--input', '-i', type=argparse.FileType('r'),
-        metavar='PATH', required=True,
+        metavar='PATH', default=sys.stdin,
         help='Input file'
     )
     parser.add_argument(
@@ -30,9 +31,14 @@ def lowercase_parser(subparsers=None):
     )
 
 
-def lowercase(input_text, output=None):
+def lowercase(input_text, output_file=None):
+    """
+    :param input_text: Text to lowercase
+    :param output_file: File to ouput lowercased text to
+    :return: Lowercased text
+    """
     if not isinstance(input_text, list):
-        input_text = input_text.split()
+        input_text = [input_text]
     lowercased_text = []
     for idx, line in enumerate(input_text):
         lowercased_text.append(line.split())
@@ -43,8 +49,8 @@ def lowercase(input_text, output=None):
                 lowercased_text[idx][idx_token] = re.sub('^h', 'h-', token)
         lowercased_text[idx] = ' '.join(lowercased_text[idx]).lower()
 
-    if output:
-        with open(output, 'w') as out:
+    if output_file:
+        with open(output_file, 'w') as out:
             for line in lowercased_text:
                 out.write(line)
     else:

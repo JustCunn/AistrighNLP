@@ -8,8 +8,8 @@ Either returns the corpus to be used in Machine Translation or return the demuta
 """
 import re
 import sys
-from tqdm import tqdm
 import argparse
+
 
 def create_parser(subparsers=None):
 
@@ -18,7 +18,7 @@ def create_parser(subparsers=None):
                                        description="Demutate corpus")
     else:
         parser = argparse.ArgumentParser('demutate-corpus',
-                                       description="Demutate corpus")
+                                         description="Demutate corpus")
 
     parser.add_argument(
         '--input', '-i', type=argparse.FileType('r'), default=sys.stdin,
@@ -30,25 +30,56 @@ def create_parser(subparsers=None):
         metavar='PATH',
         help='Output for demutated corpus'
     )
+    parser.add_argument(
+        '--language', '-l', type=str,
+        metavar='LANGUAGE',
+        help='Language of text you wish to demutate'
+    )
 
 
-corp_list = []
-label_list = []
+class DemutateText:
+    def __init__(self, language):
+        self.language = language
 
+    def demutate_corpus(self, input_text, output_file=None):
+        """Returns a demutated corpus
+        :param input_text: File Path to your corpus file
+        :param output_file: File Path to your demutated corpus file
+        :return: Demutated corpus
+        """
 
-def demutate_corpus(file, output_file=None):
-    """
-    :param file_path: File Path to your corpus file
-    :return: Demutated corpus
-    """
+        f = input_text
+        corp_list = []
+        label_list = []
 
-    f = file
-    label = ''
-    for item in tqdm(f):
-        sentence = str(item)  # Isolate the sentence so it's not part of an iterator
+        if (self.language == 'ga') or (self.language == 'gd'):
+            demutate = self.irish_scots
+        else:
+            raise Exception('{} is not a valid language choice'.format(self.language))
+
+        if not isinstance(f, list):
+            f = [f]
+
+        for sentence in f:
+            corpus_item, labels = demutate(sentence)
+            corp_list.append(' '.join(corpus_item))
+            label_list.extend(labels)
+
+        if output_file:
+            if output_file == '<stdout>':
+                print(corp_list)
+            else:
+                with open(output_file, 'w') as out:
+                    for item in corp_list:
+                        out.write(item + '\n')
+        else:
+            return corp_list, label_list
+
+    def irish_scots(self, sentence):
+        tmp_label_list = []
         tmp_list = []
-        tmp_label_list =[]
-        for token in item.split():
+        label = ''
+        for token in sentence.split():
             try:
                 if token[:3] == 'bhf':  # If begins with 'bhf', remove 'bhf'
                     token = re.sub("^bh", "", token)  # Replaces 'bhf' with nothing (removes it)
@@ -65,10 +96,11 @@ def demutate_corpus(file, output_file=None):
                     label = 'h'
 
                 elif token[0] == 'h':  # Same as above, but tailored to Irish
-                    token = list(token)
-                    token.pop(0)
-                    token = ''.join(token)
-                    label = 'h'
+                    if self.language == 'ga':
+                        token = list(token)
+                        token.pop(0)
+                        token = ''.join(token)
+                        label = 'h'
 
                 elif token[:2] == 't-':  # If word contains 't-prothesis', remove it
                     token = re.sub('t-', '', token)
@@ -86,10 +118,11 @@ def demutate_corpus(file, output_file=None):
 
                 elif token[:2] == 'mb' or token[:2] == 'nd' or token[:2] == 'gc' or token[:2] == 'ng' or \
                         token[:2] == 'dt' or token[:2] == 'bp':  # Same as above, but only remove the urú
-                    token = list(token)
-                    token.pop(0)
-                    token = ''.join(token)
-                    label = 'uru'
+                    if self.language == 'ga':
+                        token = list(token)
+                        token.pop(0)
+                        token = ''.join(token)
+                        label = 'uru'
 
                 else:  # Case for non-mutated word
                     label = 'none'
@@ -98,13 +131,7 @@ def demutate_corpus(file, output_file=None):
 
             if len(token) < 1:  # If word ends up being removed, skip it
                 continue
-            label_list.append(label)
+            tmp_label_list.append(label)
             tmp_list.append(token)
 
-        corp_list.append(' '.join(tmp_list))
-
-    if output_file:
-        for item in corp_list:
-            output_file.write(item + '\n')
-    else:
-        return corp_list, label_list
+        return tmp_list, tmp_label_list
