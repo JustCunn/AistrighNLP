@@ -9,7 +9,7 @@
 
 
 AistrighNLP is a collection of tools and models used for Aistrigh, the BT Young Scientist 2021 project. Our aim is to bring Irish into the modern era with NLP tools to give it parity with English.
-The tools included are based around the work in [Neural Models for Predicting Celtic Mutations](https://www.aclweb.org/anthology/2020.sltu-1.1.pdf) (Scannell, 2020). Included is all the tools needed to create a demutated Irish corpus, which can be used in all sorts of NLP tasks, and a model to reinsert them. For the Python API docs visit [AistrighNLP Python API](https://github.com/JustCunn/AistrighNLP/blob/master/python.md)
+The tools included are based around the work in [Neural Models for Predicting Celtic Mutations](https://www.aclweb.org/anthology/2020.sltu-1.1.pdf) (Scannell, 2020) and our own [preliminary paper](https://drive.google.com/file/d/1JwCDIW8cRuVzfNSdg7ftT4x89PVVy5Tl/view?usp=sharing). Included is all the tools needed to create a demutated Irish/Scots corpus and/or create a dataset to train a custom neural network, which can be used in all sorts of NLP tasks, and [models](https://sites.google.com/view/aistrighnlp/cáipéisiocht-documentation?authuser=1) to reinsert them. For the Python API docs visit [AistrighNLP Python API](https://github.com/JustCunn/AistrighNLP/blob/master/python.md)
 
 Installing the Package
 ---------------------------
